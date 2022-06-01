@@ -1,49 +1,30 @@
 <template>
-  <!-- 目录 -->
-  <template v-if="isShowSubMenu">
-    <Menu.SubMenu :key="props.menuInfo?.name" v-bind="$attrs">
-      <template #title>
-        <span>
-          <!--          <component :is="props.menuInfo.meta?.icon" />-->
-          <span>{{ props.menuInfo.name }}</span>
-        </span>
-      </template>
-      <template v-for="item in menuChildren" :key="item.name || item.path">
-        <!-- 递归生成菜单 -->
-        <MyMenuItem :menu-info="item" />
-      </template>
-    </Menu.SubMenu>
-  </template>
-  <!-- 菜单 -->
-  <template v-else>
-    <a-menu-item :key="props.menuInfo?.name">
-      <!--      <component :is="props.menuInfo.meta?.icon" />-->
-      <span>{{ props.menuInfo }}</span>
-    </a-menu-item>
-  </template>
+  <a-sub-menu :key="route.name">
+    <template #title>
+      <span
+        ><component :is="route.meta.icon" /><span>{{ route.meta.title }}</span></span
+      >
+    </template>
+    <template v-for="item in route.children">
+      <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.name">
+        <component :is="item.meta.icon" />
+        <span>{{ item.meta.title }}</span>
+      </a-menu-item>
+      <sub-menu v-else :key="item.name" :route="item" />
+    </template>
+  </a-sub-menu>
 </template>
 
-<script setup>
-  import { computed } from 'vue'
-
-  // eslint-disable-next-line no-undef
-  defineOptions({
-    name: 'MyMenuItem',
-  })
-
-  const props = ['menuInfo']
-  const menuChildren = computed(() => {
-    console.log(props.menuInfo)
-    return [...(props.menuInfo?.children || [])].filter((n) => !n?.hidden)
-  })
-
-  const isShowSubMenu = computed(() => {
-    const menuInfo = props.menuInfo
-    return (
-      menuInfo?.meta?.type === 0 ||
-      (!Object.is(menuInfo?.meta?.hideChildrenInMenu, true) && menuInfo?.children?.length)
-    )
-  })
+<script>
+  export default {
+    name: 'SubMenu',
+    props: {
+      route: {
+        type: Object,
+        default: () => ({}),
+      },
+    },
+  }
 </script>
 
-<style scoped></style>
+<style lang="less" scoped></style>
