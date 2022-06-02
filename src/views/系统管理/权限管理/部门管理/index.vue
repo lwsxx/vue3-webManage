@@ -1,7 +1,5 @@
 <template>
-<div>
- caidan
-</div>
+
 </template>
 
 <script>

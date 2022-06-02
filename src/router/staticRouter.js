@@ -1,5 +1,5 @@
 import Layout from '../layout/index.vue'
-
+import RouterView from '../layout/routerView/routerView.vue'
 export default [
   {
     path: '/admin',
@@ -131,14 +131,14 @@ export default [
       icon: 'BankOutlined',
     },
     children: [
-      {
-        path: 'baiduMap',
-        name: 'baiduMap',
-        component: () => import('../views/图表/百度地图/index.vue'),
-        meta: {
-          title: '百度地图',
-        },
-      },
+      // {
+      //   path: 'baiduMap',
+      //   name: 'baiduMap',
+      //   component: () => import('../views/图表/百度地图/index.vue'),
+      //   meta: {
+      //     title: '百度地图',
+      //   },
+      // },
       {
         path: 'gaodeMap',
         name: 'gaodeMap',

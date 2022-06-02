@@ -77,7 +77,8 @@ export default defineConfig({
   // 开发服务器选项配置
   server: {
     open: true, // 项目启动后自动打开浏览器
-    // port: 8088,
+    host: '0.0.0.0',
+    port: 3000,
     // proxy: {
     //   '/api': {
     //     target: '',
