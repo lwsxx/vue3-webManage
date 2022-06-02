@@ -63,50 +63,50 @@
   import { defineComponent, onMounted, reactive, ref } from 'vue'
   import { success } from '../../../../utils/NotificationUtils'
   import dayjs from 'dayjs'
-  const columns = [
-    {
-      title: '用户名',
-      dataIndex: 'username',
-      width: 280,
-      align: 'center',
-    },
-    {
-      title: '登录IP',
-      dataIndex: 'ip',
-      width: 150,
-      align: 'center',
-    },
-    {
-      title: '登录时间',
-      dataIndex: 'time',
-      align: 'center',
-      formItemProps: {
-        component: 'DatePicker',
-        componentProps: {
-          class: 'w-full',
-        },
-      },
-    },
-    {
-      title: '操作系统',
-      dataIndex: 'os',
-      align: 'center',
-    },
-    {
-      title: '浏览器',
-      dataIndex: 'browser',
-      align: 'center',
-    },
-    {
-      title: '操作',
-      key: 'action',
-      align: 'center',
-    },
-  ]
   let pageSize = 10
   export default defineComponent({
     name: 'Index',
     setup() {
+      const columns = [
+        {
+          title: '用户名',
+          dataIndex: 'username',
+          width: 280,
+          align: 'center',
+        },
+        {
+          title: '登录IP',
+          dataIndex: 'ip',
+          width: 150,
+          align: 'center',
+        },
+        {
+          title: '登录时间',
+          dataIndex: 'time',
+          align: 'center',
+          formItemProps: {
+            component: 'DatePicker',
+            componentProps: {
+              class: 'w-full',
+            },
+          },
+        },
+        {
+          title: '操作系统',
+          dataIndex: 'os',
+          align: 'center',
+        },
+        {
+          title: '浏览器',
+          dataIndex: 'browser',
+          align: 'center',
+        },
+        {
+          title: '操作',
+          key: 'action',
+          align: 'center',
+        },
+      ]
       const searchForm = ref()
       const state = reactive({
         userName: '',

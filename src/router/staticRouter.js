@@ -69,6 +69,15 @@ export default [
                   icon: 'UserSwitchOutlined',
                 },
               },
+              {
+                path: 'departmentList',
+                name: 'departmentList',
+                component: () => import('../views/系统管理/权限管理/部门管理/index.vue'),
+                meta: {
+                  title: '部门管理',
+                  icon: 'GoldOutlined',
+                },
+              },
             ],
           },
           {
