@@ -1,5 +1,4 @@
 import Layout from '../layout/index.vue'
-import RouterView from '../layout/routerView/routerView.vue'
 export default [
   {
     path: '/admin',
@@ -24,108 +23,131 @@ export default [
           title: '账号管理',
         },
       },
+    ],
+  },
+  {
+    path: '/admin/system',
+    name: 'system',
+    component: Layout,
+    meta: {
+      title: '系统管理',
+      icon: 'SettingOutlined',
+    },
+    children: [
       {
-        path: 'system',
-        name: 'system',
-        component: () => import('../views/系统管理/index.vue'),
+        path: 'permssion',
+        name: 'permssion',
+        component: () => import('../views/系统管理/权限管理/index.vue'),
         meta: {
-          title: '系统管理',
-          icon: 'SettingOutlined',
+          title: '权限管理',
+          icon: 'VerifiedOutlined',
         },
         children: [
           {
-            path: 'permssion',
-            name: 'permssion',
-            component: () => import('../views/系统管理/权限管理/index.vue'),
+            path: 'userList',
+            name: 'userList',
+            component: () => import('../views/系统管理/权限管理/用户管理/index.vue'),
             meta: {
-              title: '权限管理',
-              icon: 'VerifiedOutlined',
+              title: '用户管理',
+              icon: 'UserOutlined',
             },
-            children: [
-              {
-                path: 'userList',
-                name: 'userList',
-                component: () => import('../views/系统管理/权限管理/用户管理/index.vue'),
-                meta: {
-                  title: '用户管理',
-                  icon: 'UserOutlined',
-                },
-              },
-              {
-                path: 'menuList',
-                name: 'menuList',
-                component: () => import('../views/系统管理/权限管理/菜单管理/index.vue'),
-                meta: {
-                  title: '菜单管理',
-                  icon: 'MenuOutlined',
-                },
-              },
-              {
-                path: 'roleList',
-                name: 'roleList',
-                component: () => import('../views/系统管理/权限管理/角色管理/index.vue'),
-                meta: {
-                  title: '角色管理',
-                  icon: 'UserSwitchOutlined',
-                },
-              },
-              {
-                path: 'departmentList',
-                name: 'departmentList',
-                component: () => import('../views/系统管理/权限管理/部门管理/index.vue'),
-                meta: {
-                  title: '部门管理',
-                  icon: 'GoldOutlined',
-                },
-              },
-            ],
           },
           {
-            path: 'monitor',
-            name: 'monitor',
-            component: () => import('../views/系统管理/系统监控/index.vue'),
+            path: 'menuList',
+            name: 'menuList',
+            component: () => import('../views/系统管理/权限管理/菜单管理/index.vue'),
             meta: {
-              title: '系统监控',
-              icon: 'FundViewOutlined',
+              title: '菜单管理',
+              icon: 'MenuOutlined',
             },
-            children: [
-              {
-                path: 'online',
-                name: 'online',
-                component: () => import('../views/系统管理/系统监控/在线用户/index.vue'),
-                meta: {
-                  title: '在线用户',
-                  icon: 'FundOutlined',
-                },
+          },
+          {
+            path: 'roleList',
+            name: 'roleList',
+            component: () => import('../views/系统管理/权限管理/角色管理/index.vue'),
+            meta: {
+              title: '角色管理',
+              icon: 'UserSwitchOutlined',
+            },
+          },
+          {
+            path: 'roleList/roleAdd',
+            name: 'roleList-roleAdd',
+            hidden: true,
+            component: () => import('../views/系统管理/权限管理/角色管理/roleAction.vue'),
+            meta: {
+              title: '新增角色',
+              activeMenu: {
+                path: '/admin/system/permssion/roleList',
+                name: 'roleList',
+                title: '角色管理',
               },
-              {
-                path: 'login-log',
-                name: 'login-log',
-                component: () => import('../views/系统管理/系统监控/登录日志/index.vue'),
-                meta: {
-                  title: '登录日志',
-                  icon: 'ContactsOutlined',
-                },
-              },
-              {
-                path: 'serve',
-                name: 'serve',
-                component: () => import('../views/系统管理/系统监控/服务监控/index.vue'),
-                meta: {
-                  title: '服务监控',
-                  icon: 'DesktopOutlined',
-                },
-              },
-              {
-                path: 'req-log',
-                name: 'req-log',
-                component: () => import('../views/系统管理/系统监控/请求日志/index.vue'),
-                meta: {
-                  title: '请求日志',
-                  icon: 'ConsoleSqlOutlined',
-                },
-              },
-            ],
+            },
+          },
+          {
+            path: 'roleList/roleEdit/:id',
+            name: 'roleList-roleEdit',
+            hidden: true,
+            component: () => import('../views/系统管理/权限管理/角色管理/roleAction.vue'),
+            meta: {
+              title: '编辑角色',
+            },
+          },
+          {
+            path: 'departmentList',
+            name: 'departmentList',
+            component: () => import('../views/系统管理/权限管理/部门管理/index.vue'),
+            meta: {
+              title: '部门管理',
+              icon: 'GoldOutlined',
+            },
+          },
+        ],
+      },
+      {
+        path: 'monitor',
+        name: 'monitor',
+        component: () => import('../views/系统管理/系统监控/index.vue'),
+        meta: {
+          title: '系统监控',
+          icon: 'FundViewOutlined',
+        },
+        children: [
+          {
+            path: 'online',
+            name: 'online',
+            component: () => import('../views/系统管理/系统监控/在线用户/index.vue'),
+            meta: {
+              title: '在线用户',
+              icon: 'FundOutlined',
+            },
+          },
+          {
+            path: 'login-log',
+            name: 'login-log',
+            component: () => import('../views/系统管理/系统监控/登录日志/index.vue'),
+            meta: {
+              title: '登录日志',
+              icon: 'ContactsOutlined',
+            },
+          },
+          {
+            path: 'serve',
+            name: 'serve',
+            component: () => import('../views/系统管理/系统监控/服务监控/index.vue'),
+            meta: {
+              title: '服务监控',
+              icon: 'DesktopOutlined',
+            },
+          },
+          {
+            path: 'req-log',
+            name: 'req-log',
+            component: () => import('../views/系统管理/系统监控/请求日志/index.vue'),
+            meta: {
+              title: '请求日志',
+              icon: 'ConsoleSqlOutlined',
+            },
           },
         ],
       },

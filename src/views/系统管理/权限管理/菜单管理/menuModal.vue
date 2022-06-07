@@ -15,13 +15,13 @@
       :wrapper-col="{ span: 16 }"
     >
       <a-form-item
-        label="部门名称"
-        name="depName"
-        :rules="[{ required: true, message: '请输入部门名称!' }]"
+        label="菜单名称"
+        name="menuName"
+        :rules="[{ required: true, message: '请输入菜单名称!' }]"
       >
-        <a-input allow-clear v-model:value="formState.depName" />
+        <a-input allow-clear v-model:value="formState.menuName" />
       </a-form-item>
-      <a-form-item label="上级部门" name="shangji">
+      <a-form-item label="上级菜单" name="shangji">
         <a-tree-select
           v-model:value="formState.shangji"
           show-search
@@ -35,7 +35,7 @@
       <a-form-item
         label="排序"
         name="number"
-        :rules="[{ required: true, message: '请输入部门排序!' }]"
+        :rules="[{ required: true, message: '请输入菜单排序!' }]"
       >
         <a-input-number
           style="width: 100%"
@@ -45,12 +45,12 @@
           v-model:value="formState.number"
         />
       </a-form-item>
-      <a-form-item label="备注" name="beizhu">
-        <a-textarea
-          :auto-size="{ minRows: 2, maxRows: 5 }"
-          allow-clear
-          v-model:value="formState.beizhu"
-        />
+      <a-form-item
+        label="路由"
+        name="router"
+        :rules="[{ required: true, message: '请输入菜单路由!' }]"
+      >
+        <a-input allow-clear v-model:value="formState.router" />
       </a-form-item>
     </a-form>
   </a-modal>
@@ -60,7 +60,7 @@
   import { defineComponent, toRefs, reactive, ref } from 'vue'
   import { success } from '../../../../utils/NotificationUtils'
   export default defineComponent({
-    name: 'DepModal',
+    name: 'MenuModal',
     props: {
       title: String,
       visible: Boolean,
@@ -74,34 +74,48 @@
       })
       const treeData = ref([
         {
-          title: '测试部门',
-          value: '测试部门',
+          title: '系统管理',
+          value: '系统管理',
           children: [
             {
-              title: '测试一部',
-              value: '测试一部',
+              title: '权限管理',
+              value: '权限管理',
+              children: [
+                {
+                  title: '用户管理',
+                  value: '用户管理',
+                },
+                {
+                  title: '菜单管理',
+                  value: '菜单管理',
+                },
+                {
+                  title: '角色管理',
+                  value: '角色管理',
+                },
+                {
+                  title: '部门管理',
+                  value: '部门管理',
+                },
+              ],
             },
             {
-              title: '测试二部',
-              value: '测试二部',
-            },
-            {
-              title: '测试三部',
-              value: '测试三部',
+              title: '系统监控',
+              value: '系统监控',
             },
           ],
         },
         {
-          title: '技术部门',
-          value: '技术部门',
+          title: '首页',
+          value: '首页',
         },
         {
-          title: '人事部门',
-          value: '人事部门',
+          title: '图表',
+          value: '图表',
         },
       ])
       let { formState, loading } = toRefs(state)
-      //编辑时获取部门信息
+      //编辑时获取菜单信息
       function getData(id) {
         console.log(id)
         state.formState = { ...id }

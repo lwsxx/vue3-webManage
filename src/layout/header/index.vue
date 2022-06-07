@@ -83,7 +83,7 @@
 
   //  账号管理
   const ToZhanghaoguanli = () => {
-    router.push('editPassword')
+    router.push({ name: 'editPassword' })
   }
 </script>
 

@@ -57,6 +57,17 @@
                 <a-popconfirm title="确定删除该部门吗?" @confirm="() => confirm(record.id)">
                   <a class="red" href="#">删除</a>
                 </a-popconfirm>
+                <a-divider type="vertical" />
+                <template v-if="record.status === 'disable'">
+                  <a-popconfirm title="确定启用该部门吗?" @confirm="() => confirm(record.id)">
+                    <a href="#">启用</a>
+                  </a-popconfirm>
+                </template>
+                <template v-else>
+                  <a-popconfirm title="确定停用该部门吗?" @confirm="() => confirm(record.id)">
+                    <a class="red" href="#">停用</a>
+                  </a-popconfirm>
+                </template>
               </template>
             </template>
           </a-table>
@@ -89,7 +100,7 @@
           title: '部门名称',
           dataIndex: 'depName',
           width: 280,
-          align: 'center',
+          // align: 'center',
         },
         {
           title: '排序',
@@ -143,18 +154,21 @@
               number: 1,
               status: 'normal',
               beizhu: '测试部门 10',
+              shangji: '',
               children: [
                 {
                   id: 101,
                   depName: '测试一部',
                   number: 1,
                   status: 'normal',
+                  shangji: '测试部门',
                   beizhu: '测试一部',
                 },
                 {
                   id: 102,
                   depName: '测试二部',
                   number: 2,
+                  shangji: '测试部门',
                   status: 'normal',
                   beizhu: '测试二部',
                 },
@@ -162,6 +176,7 @@
                   id: 103,
                   depName: '测试三部',
                   number: 3,
+                  shangji: '测试部门',
                   status: 'disable',
                   beizhu: '测试三部',
                 },
@@ -171,6 +186,7 @@
               id: 2,
               depName: '技术部门',
               number: 2,
+              shangji: '',
               status: 'normal',
               beizhu: '技术部门 10',
             },
@@ -178,6 +194,7 @@
               id: 3,
               depName: '人事部门',
               number: 3,
+              shangji: '',
               status: 'normal',
               beizhu: '人事部门 10',
             },
