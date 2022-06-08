@@ -84,7 +84,7 @@
         let targetList = []
         const meta = currentRoute.meta
         if (meta?.currentActiveMenu) {
-          const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu)
+          const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu[0])
           list = truncate(currentRoute.matched)
           targetList = list.concat(targetMenu)
           return targetList.map((n) => n.name)
@@ -105,7 +105,7 @@
           state.openKeys = newVal ? [] : getOpenKeys()
           const meta = currentRoute.meta
           if (meta?.currentActiveMenu) {
-            const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu)
+            const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu[0])
             state.selectedKeys = [targetMenu?.name]
           } else {
             state.selectedKeys = [currentRoute.name]
@@ -121,7 +121,7 @@
           state.openKeys = getOpenKeys()
           const meta = currentRoute.meta
           if (meta?.currentActiveMenu) {
-            const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu)
+            const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu[0])
             state.selectedKeys = [targetMenu?.name]
           } else {
             state.selectedKeys = [currentRoute.name]

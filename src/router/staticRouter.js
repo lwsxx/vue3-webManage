@@ -59,17 +59,30 @@ export default [
             component: () => import('../views/系统管理/权限管理/用户管理/userAction.vue'),
             meta: {
               title: '新增用户',
-              currentActiveMenu: '/admin/system/permssion/userList',
+              currentActiveMenu: ['/admin/system/permssion/userList'],
             },
           },
           {
             path: 'userList/userEdit/:id',
-            name: '/admin/system/permssion/userList/userEdit',
+            name: '/admin/system/permssion/userList/userEdit/:id',
             hidden: true,
             component: () => import('../views/系统管理/权限管理/用户管理/userAction.vue'),
             meta: {
               title: '编辑用户',
-              currentActiveMenu: '/admin/system/permssion/userList',
+              currentActiveMenu: ['/admin/system/permssion/userList'],
+            },
+          },
+          {
+            path: 'userList/userEdit/:id/info',
+            name: '/admin/system/permssion/userList/userEdit/:id/info',
+            hidden: true,
+            component: () => import('../views/系统管理/权限管理/用户管理/ceshi.vue'),
+            meta: {
+              title: '测试用户',
+              currentActiveMenu: [
+                '/admin/system/permssion/userList',
+                '/admin/system/permssion/userList/userEdit/:id',
+              ],
             },
           },
           {
@@ -97,7 +110,7 @@ export default [
             component: () => import('../views/系统管理/权限管理/角色管理/roleAction.vue'),
             meta: {
               title: '新增角色',
-              currentActiveMenu: '/admin/system/permssion/roleList',
+              currentActiveMenu: ['/admin/system/permssion/roleList'],
             },
           },
           {
@@ -107,7 +120,7 @@ export default [
             component: () => import('../views/系统管理/权限管理/角色管理/roleAction.vue'),
             meta: {
               title: '编辑角色',
-              currentActiveMenu: '/admin/system/permssion/roleList',
+              currentActiveMenu: ['/admin/system/permssion/roleList'],
             },
           },
           {

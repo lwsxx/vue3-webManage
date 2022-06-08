@@ -66,6 +66,7 @@
         </a-form-item>
         <a-form-item label=" " :colon="false">
           <a-button type="primary" @click="submit" :loading="confirmLoading">保存</a-button>
+          <a-button @click="ceshi">ceshi</a-button>
         </a-form-item>
       </a-form>
     </a-card>
@@ -178,6 +179,12 @@
       .catch((err) => {
         console.log(err)
       })
+  }
+  const ceshi = () => {
+    router.push({
+      name: `/admin/system/permssion/userList/userEdit/:id/info`,
+      params: { id: route.params.id },
+    })
   }
 </script>
 

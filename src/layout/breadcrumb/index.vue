@@ -1,7 +1,7 @@
 <template>
   <a-breadcrumb style="height: 45px; line-height: 45px; margin-left: 30px">
     <a-breadcrumb-item v-for="item in breadCrumbData" :key="item.path">
-      <router-link to="" @click="clickBread(item.name)" v-if="isLink(item)">
+      <router-link to="" @click="clickBread(item)" v-if="isLink(item)">
         {{ item.meta.title || '' }}
       </router-link>
       <span v-else>
@@ -70,11 +70,11 @@
           const routeMatched = currentRoute.value.matched
           const cur = routeMatched?.[routeMatched.length - 1]
           let path = currentRoute.value.path
-
           if (cur && cur?.meta?.currentActiveMenu) {
-            path = cur.meta.currentActiveMenu
+            path = cur.meta.currentActiveMenu[cur.meta.currentActiveMenu.length - 1]
           }
           const parent = getAllParentPath(menus, path)
+          console.log(parent)
           const filterMenus = menus.filter((item) => item.name === parent[0])
           const matched = getMatched(filterMenus, parent)
           if (!matched || matched.length === 0) return
@@ -96,8 +96,11 @@
         let arr = toRaw(item)
         return arr.children && arr.children.length === 0 && arr.name !== currentRouteName.name
       }
-      function clickBread(name) {
-        router.push({ name })
+      function clickBread(item) {
+        if (item.name && item.params) {
+          router.push({ name: item.name, params: item.params })
+        }
+        router.push({ name: item.name })
       }
       return { breadCrumbData, isLink, clickBread }
     },

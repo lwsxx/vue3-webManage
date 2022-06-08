@@ -370,7 +370,7 @@
       }
 
       function edit(id) {
-        router.push({ name: '/admin/system/permssion/userList/userEdit', params: { id } })
+        router.push({ name: '/admin/system/permssion/userList/userEdit/:id', params: { id } })
       }
 
       return {
