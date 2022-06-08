@@ -11,11 +11,11 @@
 
 export default {
   navTheme: 'light', // 'light' | 'dark' | 'realDark';
-  primaryColor: 'rgb(24, 144, 255)', // '#F5222D', // primary color of ant design
+  primaryColor: '#1890ff', // '#F5222D', // primary color of ant design
   layout: 'sidemenu', // nav menu position: `sidemenu` or `topmenu`
   contentWidth: 'Fluid', // layout of content: `Fluid` or `Fixed`, only works when layout is topmenu
   fixedHeader: false, // sticky header
-  fixSiderbar: true, // //是否固定左侧栏
+  fixSiderbar: true, // 是否固定左侧栏
   colorWeak: false,
   menu: {
     locale: true,

@@ -8,6 +8,7 @@ import { createStyleImportPlugin } from 'vite-plugin-style-import'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import dayjs from 'dayjs'
 import pkg from './package.json'
+import { generateModifyVars } from './src/layout/config/generateModifyVars'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 
 const CWD = process.cwd()
@@ -66,7 +67,7 @@ export default defineConfig({
       less: {
         javascriptEnabled: true,
         // 配置 less 变量
-        modifyVars: {},
+        modifyVars: generateModifyVars(),
         additionalData: `
             @import "ant-design-vue/lib/style/themes/default.less";
             @import "@/styles/global.less";
