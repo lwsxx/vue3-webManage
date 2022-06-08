@@ -183,11 +183,11 @@
       }
 
       function add() {
-        router.push({ name: 'roleList-roleAdd' })
+        router.push({ name: '/admin/system/permssion/roleList/roleAdd' })
       }
 
       function edit(id) {
-        router.push({ name: 'roleList-roleEdit', params: { id } })
+        router.push({ name: '/admin/system/permssion/roleList/roleEdit', params: { id } })
       }
 
       return {

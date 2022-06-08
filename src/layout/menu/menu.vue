@@ -46,6 +46,7 @@
     },
     setup(props) {
       const currentRoute = useRoute()
+      console.log('当前路由名字---------------------------')
       console.log([currentRoute.name])
       const router = useRouter()
       const state = reactive({
@@ -55,7 +56,6 @@
       })
       const menus = computed(() => {
         let menu = [...routes]
-        console.log(deepFilter(menu))
         return deepFilter(menu)
       })
       function deepFilter(tree, arr = []) {
@@ -73,21 +73,29 @@
       /** 侧边栏布局 */
       const isSideMenu = computed(() => themeConfig.layout === 'sidemenu')
       const theme = computed(() => themeConfig.navTheme)
-      // 根据activeMenu获取指定的menu
+      // 根据currentActiveMenu获取指定的menu
       const getTargetMenuByActiveMenuName = (activeMenu) => {
         return router.getRoutes().find((n) => [n.name, n.path].includes(activeMenu))
       }
 
       // 获取当前打开的子菜单
       const getOpenKeys = () => {
-        // const meta = currentRoute.meta
-        console.log('currentRoute', currentRoute)
-        // if (meta?.activeMenu) {
-        //   const targetMenu = getTargetMenuByActiveMenuName(meta.activeMenu)
-        //   return targetMenu?.meta?.namePath ?? [meta?.activeMenu]
-        // }
-        // return currentRoute.meta?.namePath ?? currentRoute.matched.map((n) => n.name)
+        let list = []
+        let targetList = []
+        const meta = currentRoute.meta
+        if (meta?.currentActiveMenu) {
+          const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu)
+          list = truncate(currentRoute.matched)
+          targetList = list.concat(targetMenu)
+          return targetList.map((n) => n.name)
+        }
         return currentRoute.matched.map((n) => n.name)
+      }
+
+      function truncate(arr) {
+        let newArr = arr.slice(0)
+        newArr.pop()
+        return newArr
       }
 
       // 监听菜单收缩状态
@@ -95,7 +103,13 @@
         () => props.collapsed,
         (newVal) => {
           state.openKeys = newVal ? [] : getOpenKeys()
-          state.selectedKeys = [currentRoute.name]
+          const meta = currentRoute.meta
+          if (meta?.currentActiveMenu) {
+            const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu)
+            state.selectedKeys = [targetMenu?.name]
+          } else {
+            state.selectedKeys = [currentRoute.name]
+          }
         },
       )
 
@@ -105,14 +119,13 @@
         () => {
           if (currentRoute.name === 'login' || props.collapsed) return
           state.openKeys = getOpenKeys()
-          // const meta = currentRoute.meta
-          // if (meta?.activeMenu) {
-          //   const targetMenu = getTargetMenuByActiveMenuName(meta.activeMenu)
-          //   state.selectedKeys = [targetMenu?.name ?? meta?.activeMenu]
-          // } else {
-          //   state.selectedKeys = [currentRoute.meta?.activeMenu ?? currentRoute.name]
-          // }
-          state.selectedKeys = [currentRoute.name]
+          const meta = currentRoute.meta
+          if (meta?.currentActiveMenu) {
+            const targetMenu = getTargetMenuByActiveMenuName(meta.currentActiveMenu)
+            state.selectedKeys = [targetMenu?.name]
+          } else {
+            state.selectedKeys = [currentRoute.name]
+          }
         },
         {
           immediate: true,

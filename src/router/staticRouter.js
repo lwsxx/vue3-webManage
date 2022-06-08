@@ -7,7 +7,7 @@ export default [
     children: [
       {
         path: 'index',
-        name: 'index',
+        name: '/admin/index',
         component: () => import('../views/首页/index.vue'),
         meta: {
           title: '首页',
@@ -16,7 +16,7 @@ export default [
       },
       {
         path: 'editPassword',
-        name: 'editPassword',
+        name: '/admin/editPassword',
         hidden: true,
         component: () => import('../views/账号管理/EditPassword.vue'),
         meta: {
@@ -27,7 +27,7 @@ export default [
   },
   {
     path: '/admin/system',
-    name: 'system',
+    name: '/admin/system',
     component: Layout,
     meta: {
       title: '系统管理',
@@ -36,7 +36,7 @@ export default [
     children: [
       {
         path: 'permssion',
-        name: 'permssion',
+        name: '/admin/system/permssion',
         component: () => import('../views/系统管理/权限管理/index.vue'),
         meta: {
           title: '权限管理',
@@ -45,7 +45,7 @@ export default [
         children: [
           {
             path: 'userList',
-            name: 'userList',
+            name: '/admin/system/permssion/userList',
             component: () => import('../views/系统管理/权限管理/用户管理/index.vue'),
             meta: {
               title: '用户管理',
@@ -54,7 +54,7 @@ export default [
           },
           {
             path: 'menuList',
-            name: 'menuList',
+            name: '/admin/system/permssion/menuList',
             component: () => import('../views/系统管理/权限管理/菜单管理/index.vue'),
             meta: {
               title: '菜单管理',
@@ -63,7 +63,7 @@ export default [
           },
           {
             path: 'roleList',
-            name: 'roleList',
+            name: '/admin/system/permssion/roleList',
             component: () => import('../views/系统管理/权限管理/角色管理/index.vue'),
             meta: {
               title: '角色管理',
@@ -72,30 +72,27 @@ export default [
           },
           {
             path: 'roleList/roleAdd',
-            name: 'roleList-roleAdd',
+            name: '/admin/system/permssion/roleList/roleAdd',
             hidden: true,
             component: () => import('../views/系统管理/权限管理/角色管理/roleAction.vue'),
             meta: {
               title: '新增角色',
-              activeMenu: {
-                path: '/admin/system/permssion/roleList',
-                name: 'roleList',
-                title: '角色管理',
-              },
+              currentActiveMenu: '/admin/system/permssion/roleList',
             },
           },
           {
             path: 'roleList/roleEdit/:id',
-            name: 'roleList-roleEdit',
+            name: '/admin/system/permssion/roleList/roleEdit',
             hidden: true,
             component: () => import('../views/系统管理/权限管理/角色管理/roleAction.vue'),
             meta: {
               title: '编辑角色',
+              currentActiveMenu: '/admin/system/permssion/roleList',
             },
           },
           {
             path: 'departmentList',
-            name: 'departmentList',
+            name: '/admin/system/permssion/departmentList',
             component: () => import('../views/系统管理/权限管理/部门管理/index.vue'),
             meta: {
               title: '部门管理',
@@ -106,7 +103,7 @@ export default [
       },
       {
         path: 'monitor',
-        name: 'monitor',
+        name: '/admin/system/monitor',
         component: () => import('../views/系统管理/系统监控/index.vue'),
         meta: {
           title: '系统监控',
@@ -115,7 +112,7 @@ export default [
         children: [
           {
             path: 'online',
-            name: 'online',
+            name: '/admin/system/monitor/online',
             component: () => import('../views/系统管理/系统监控/在线用户/index.vue'),
             meta: {
               title: '在线用户',
@@ -124,7 +121,7 @@ export default [
           },
           {
             path: 'login-log',
-            name: 'login-log',
+            name: '/admin/system/monitor/login-log',
             component: () => import('../views/系统管理/系统监控/登录日志/index.vue'),
             meta: {
               title: '登录日志',
@@ -133,7 +130,7 @@ export default [
           },
           {
             path: 'serve',
-            name: 'serve',
+            name: '/admin/system/monitor/serve',
             component: () => import('../views/系统管理/系统监控/服务监控/index.vue'),
             meta: {
               title: '服务监控',
@@ -142,7 +139,7 @@ export default [
           },
           {
             path: 'req-log',
-            name: 'req-log',
+            name: '/admin/system/monitor/req-log',
             component: () => import('../views/系统管理/系统监控/请求日志/index.vue'),
             meta: {
               title: '请求日志',
@@ -155,7 +152,7 @@ export default [
   },
   {
     path: '/admin/charts',
-    name: 'charts',
+    name: '/admin/charts',
     component: Layout,
     meta: {
       title: '图表',
@@ -172,7 +169,7 @@ export default [
       // },
       {
         path: 'gaodeMap',
-        name: 'gaodeMap',
+        name: '/admin/charts/gaodeMap',
         component: () => import('../views/图表/高德地图/index.vue'),
         meta: {
           title: '高德地图',
@@ -180,7 +177,7 @@ export default [
       },
       {
         path: 'echarts',
-        name: 'echarts',
+        name: '/admin/charts/echarts',
         component: () => import('../views/图表/Echarts/index.vue'),
         meta: {
           title: 'Echarts',
@@ -188,7 +185,7 @@ export default [
         children: [
           {
             path: 'map',
-            name: 'map',
+            name: '/admin/charts/echarts/map',
             component: () => import('../views/图表/Echarts/Map.vue'),
             meta: {
               title: '地图',
@@ -196,7 +193,7 @@ export default [
           },
           {
             path: 'lineChart',
-            name: 'lineChart',
+            name: '/admin/charts/echarts/lineChart',
             component: () => import('../views/图表/Echarts/LineChart.vue'),
             meta: {
               title: '折线图',
@@ -204,7 +201,7 @@ export default [
           },
           {
             path: 'barChart',
-            name: 'barChart',
+            name: '/admin/charts/echarts/barChart',
             component: () => import('../views/图表/Echarts/BarChart.vue'),
             meta: {
               title: '柱状图',
@@ -212,7 +209,7 @@ export default [
           },
           {
             path: 'pieChart',
-            name: 'pieChart',
+            name: '/admin/charts/echarts/pieChart',
             component: () => import('../views/图表/Echarts/PieChart.vue'),
             meta: {
               title: '饼图',
