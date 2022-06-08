@@ -53,6 +53,26 @@ export default [
             },
           },
           {
+            path: 'userList/userAdd',
+            name: '/admin/system/permssion/userList/userAdd',
+            hidden: true,
+            component: () => import('../views/系统管理/权限管理/用户管理/userAction.vue'),
+            meta: {
+              title: '新增用户',
+              currentActiveMenu: '/admin/system/permssion/userList',
+            },
+          },
+          {
+            path: 'userList/userEdit/:id',
+            name: '/admin/system/permssion/userList/userEdit',
+            hidden: true,
+            component: () => import('../views/系统管理/权限管理/用户管理/userAction.vue'),
+            meta: {
+              title: '编辑用户',
+              currentActiveMenu: '/admin/system/permssion/userList',
+            },
+          },
+          {
             path: 'menuList',
             name: '/admin/system/permssion/menuList',
             component: () => import('../views/系统管理/权限管理/菜单管理/index.vue'),

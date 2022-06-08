@@ -94,7 +94,7 @@
                   </a-tag>
                 </template>
                 <template v-if="column.key === 'action'">
-                  <a @click="() => confirm(record)">编辑</a>
+                  <a @click="() => edit(record.id)">编辑</a>
                   <a-divider type="vertical" />
                   <a-popconfirm title="确定删除该用户吗?" @confirm="() => confirm(record.id)">
                     <a class="red" href="#">删除</a>
@@ -366,7 +366,11 @@
       }
 
       function add() {
-        router.push('')
+        router.push({ name: '/admin/system/permssion/userList/userAdd' })
+      }
+
+      function edit(id) {
+        router.push({ name: '/admin/system/permssion/userList/userEdit', params: { id } })
       }
 
       return {
@@ -384,6 +388,7 @@
         handleTableChange,
         confirm,
         add,
+        edit,
       }
     },
   }
