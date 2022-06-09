@@ -27,7 +27,10 @@
       function deepFilter(tree, arr = []) {
         if (!tree.length) return []
         for (let item of tree) {
-          if (item.hidden) continue
+          // if (item.hidden) continue
+          if (item.path === '/') continue
+          if (item.name === 'Login') continue
+          if (item.name === 'NotFound') continue
           let node = { ...item, children: [] }
           arr.push(node)
           if (item.children && item.children.length) {
@@ -69,12 +72,17 @@
           const menus = await getMenu()
           const routeMatched = currentRoute.value.matched
           const cur = routeMatched?.[routeMatched.length - 1]
-          let path = currentRoute.value.path
+          let path = ''
+          let parent = []
           if (cur && cur?.meta?.currentActiveMenu) {
-            path = cur.meta.currentActiveMenu[cur.meta.currentActiveMenu.length - 1]
+            for (let i = 0; i < cur.meta.currentActiveMenu.length; i++) {
+              path = cur.meta.currentActiveMenu[i]
+              parent = parent.concat(getAllParentPath(menus, path))
+            }
+          } else {
+            path = currentRoute.value.path
+            parent = getAllParentPath(menus, path)
           }
-          const parent = getAllParentPath(menus, path)
-          console.log(parent)
           const filterMenus = menus.filter((item) => item.name === parent[0])
           const matched = getMatched(filterMenus, parent)
           if (!matched || matched.length === 0) return

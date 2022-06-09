@@ -23,6 +23,15 @@ export default [
           title: '账号管理',
         },
       },
+      {
+        path: 'xiaoxiList',
+        name: '/admin/xiaoxiList',
+        hidden: true,
+        component: () => import('../views/消息提醒/index.vue'),
+        meta: {
+          title: '消息提醒',
+        },
+      },
     ],
   },
   {

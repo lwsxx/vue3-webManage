@@ -71,12 +71,6 @@
       title: '登录时间',
       dataIndex: 'time',
       align: 'center',
-      formItemProps: {
-        component: 'DatePicker',
-        componentProps: {
-          class: 'w-full',
-        },
-      },
     },
     {
       title: '操作系统',
